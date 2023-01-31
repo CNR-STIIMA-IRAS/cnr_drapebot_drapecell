@@ -41,7 +41,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Acceleration_Scaling_Factor: 1
+    - Acceleration_Scaling_Factor: 0.3
       Class: moveit_rviz_plugin/MotionPlanning
       Enabled: true
       Move Group Namespace: ""
@@ -81,6 +81,11 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+          gripper:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           link_1:
             Alpha: 1
             Show Axes: false
@@ -111,7 +116,7 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-        Loop Animation: false
+        Loop Animation: true
         Robot Alpha: 0.5
         Robot Color: 150; 50; 150
         Show Robot Collision: false
@@ -166,6 +171,11 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
+          gripper:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           link_1:
             Alpha: 1
             Show Axes: false
@@ -200,7 +210,7 @@ Visualization Manager:
         Show Robot Collision: false
         Show Robot Visual: true
       Value: true
-      Velocity_Scaling_Factor: 1
+      Velocity_Scaling_Factor: 0.3
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -217,7 +227,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 9.408639907836914
+      Distance: 9.908825874328613
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -233,9 +243,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.33000028133392334
+      Pitch: 0.4050002694129944
       Target Frame: base_link
-      Yaw: 0.5167649388313293
+      Yaw: 0.1567649245262146
     Saved: ~
 Window Geometry:
   ConfigurationManager:
