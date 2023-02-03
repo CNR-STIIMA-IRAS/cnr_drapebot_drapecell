@@ -29,7 +29,8 @@ mosquitto_pub -h <BROKER_IP_ADDRESS> -t /robot_1/command -m "{\"J0\" : 0.0, \"J1
 ```
 
 6. **[Terminal 3]** Use `rosservice` to stop the `EGM` session:
-   ```
-   rosservice call /rws/sm_addin/stop_egm "{}"
-   ```
+```
+rosservice call /rws/sm_addin/stop_egm "{}"
+```
+
 stopping the EGM also the `mqtt_to_joint_position_controller` controller is disabled.
