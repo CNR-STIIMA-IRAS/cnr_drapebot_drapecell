@@ -1,7 +1,7 @@
 action_name: "/abb_moveit_lab/follow_joint_trajectory"
 mqtt_topic: "/robot_1/joint_trajectory"
 
-broker_address: "192.168.125.9"
+broker_address: "192.168.125.7"
 
 port: 1883
 client_id: "robot1/mqtt_converter"
@@ -18,6 +18,10 @@ robot_joint_names:
 - joint_5
 - joint_6
 
-
+handle_deformation: false
+# to publish target pose
+base_link: fake_linear_axis
+tool_link: grasping
+target_pose: target_pose
 
 

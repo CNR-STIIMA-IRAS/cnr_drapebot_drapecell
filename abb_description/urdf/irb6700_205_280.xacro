@@ -32,5 +32,13 @@
      </geometry>
    </collision>
  </link>
+ 
+   <joint name="$joint_deformation" type="fixed">
+    <origin xyz="1 0.85 0" rpy="0 1.5707 0"/>
+    <parent link="link_6"/>
+    <child link="grasping"/>
+  </joint>
+  
+   <link name="grasping"/>
   
 </robot>
