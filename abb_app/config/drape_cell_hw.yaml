@@ -83,30 +83,32 @@ mqtt_hw:
     
   gt_traj_arb:
     type: cnr/control/GTTrajArbitration
-    controlled_joints: all
+    controlled_joints: [ joint_1, joint_2, joint_3, joint_4, joint_5, joint_6]
+    
     kin_update_period: 0.04
     
-    robot_base_frame  : fake_linear_axis
-    robot_tip_frame   : link_6
-    force_sensor_frame: grasping    ### TODO : set according to urdf on profactor PC
+    robot_base_frame  : base_link
+    robot_tip_frame   : grasping
+    force_sensor_frame: grasping
     
     use_cartesian_reference: false
-    joint_target_topic:     "/robot1/interp_joint_pos_target"
+    joint_target_topic:     "/joint_pos_target"
     pose_target:            "/target_cart_pose"
     
     external_wrench_topic: "/deformation_estimation"
-    wrench_deadband: [.02,.02,.02,1,1,0.05]
+    wrench_deadband: [.05,.03,.02,1,1,0.05]
     use_filtered_wrench: true
-    omega_wrench: 500
-    wrench_gains: [200,75,75,1,1,1.5]
+    omega_wrench: 1000
+    #wrench_gains: [100,100,100,1,1,2]
+    wrench_gains: [0,0,10,0,0,0]
     
-    set_wrench_zero: false
-    wrench_zero: [0,1,0,0,0,0]  # measured in meters from the gripper
+    set_wrench_zero: true
+    wrench_zero: [0,0.9,0,0,0,0]  # measured in meters from the gripper
     
     ### for GT and MG
-    M_r: [10,10,10,.1,.1,.1]
+    M_r: [10,10,1,.1,.1,.1]
     K_r: [0,0,0,0,0,0]
-    D_r: [100,100,100,1,1,1]
+    D_r: [100,100,100,1,1,5]
     damping_is_ratio: false
 
     
@@ -135,7 +137,7 @@ mqtt_hw:
     Rh: [0.0005,0.0005,0.0005,0.5,0.5,5]
     #Rh: [0.00005,0.00005,0.00005,1,1,1]
     
-    Rr: [0.0005,0.0005,0.0005,1,1,1]
+    Rr: [0.0005,0.0005,0.0005,0.5,0.5,5]
     
     mask: [1,1,1,0,0,1]
     

@@ -49,8 +49,8 @@
     <arg name="debug" value="$(arg debug)"/>
   </include>
   
-<!--   <include file="$(find abb_app)/launch/mqtt_converter.launch" /> -->
+  <include file="$(find abb_app)/launch/mqtt_converter.launch" /> 
 <!--   <include file="$(find arbitration_utils)/launch/drapebot_arbitration.launch" /> -->
-<!--   <include file="$(find human_traj_estimator)/launch/traj_estimator.launch" /> -->
+  <include file="$(find human_traj_estimator)/launch/assistance_estimator.launch" /> 
   
 </launch>

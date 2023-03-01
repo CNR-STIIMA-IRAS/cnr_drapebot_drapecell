@@ -18,7 +18,8 @@
    <visual>
      <origin xyz="0 0 0" rpy="0 0 0" />
      <geometry>
-       <box size="1 1.7 .9" />
+       <box size=".1 .1 .1" />
+       <!--box size="1 1.7 .9" /-->
      </geometry>
      <material name="Cyan">
        <color rgba="0 1.0 1.0 1.0"/>
@@ -34,7 +35,7 @@
  </link>
  
    <joint name="$joint_deformation" type="fixed">
-    <origin xyz="1 0.85 0" rpy="0 1.5707 0"/>
+    <origin xyz="0.78 0.86 -0.18" rpy="0 1.5707 0"/>
     <parent link="link_6"/>
     <child link="grasping"/>
   </joint>
