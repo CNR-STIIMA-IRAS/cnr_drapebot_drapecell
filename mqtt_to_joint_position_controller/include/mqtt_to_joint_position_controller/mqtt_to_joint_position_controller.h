@@ -60,6 +60,10 @@ namespace drapebot_controller
 
     private:
 
+        //
+        ros::Publisher command_pub;
+        //
+
         bool first_cycle_;
         bool topics_subscribed_;
 

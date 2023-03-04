@@ -59,6 +59,10 @@ namespace drapebot_controller
   {
     try
     {
+      /////
+      command_pub = n.advertise<std_msgs::Float64MultiArray>("command", 10);;
+      /////
+
       ctrl_.init(hw,n); 
 
       // ---- MQTT params ----
@@ -216,6 +220,14 @@ namespace drapebot_controller
   
     ctrl_.commands_buffer_.writeFromNonRT(j_pos_command_);
     ctrl_.update(time,period);
+
+    ///
+    std_msgs::Float64MultiArray command_msg;
+    for(const double& j_pos : j_pos_command_)
+      command_msg.data.push_back(j_pos);
+    command_pub.publish(command_msg);
+    ros::spinOnce();
+    ///
   }
     
 
