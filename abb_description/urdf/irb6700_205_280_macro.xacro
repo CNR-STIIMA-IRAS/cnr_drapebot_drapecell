@@ -10,6 +10,7 @@
   <color rgba=".7 .7 .7 1"/>
 </material>
 
+<link name="world"/>
 <link name="${prefix}fake_linear_axis"/>
 
 <link name="${prefix}base_link">
@@ -125,6 +126,13 @@
   </collision>
 </link>
 <!--  joint list -->
+
+
+<joint name="${prefix}joint_world" type="fixed">
+  <origin xyz="-8 1 0" rpy="0 0 0"/>
+  <parent link="world"/>
+  <child link="${prefix}fake_linear_axis"/>
+</joint>
 
 <joint name="${prefix}joint_0" type="prismatic">
   <origin xyz="0 0 0" rpy="0 0 0"/>

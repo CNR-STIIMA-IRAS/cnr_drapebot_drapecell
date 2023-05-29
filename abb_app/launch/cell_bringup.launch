@@ -2,15 +2,16 @@
 <launch>
   <arg name="debug" default="false"/>
   <arg name="use_rviz" default="true" />
+  <arg name="moveit_pkg" default="abb_moveit" />
 
   <rosparam command="load" file="$(find abb_app)/config/drape_cell_hw.yaml" />
   <rosparam command="load" file="$(find abb_app)/config/ft_hw.yaml" />
 
-  <include file="$(find abb_moveit)/launch/planning_context.launch" >
+  <include file="$(eval find(arg('moveit_pkg')) + '/launch/planning_context.launch')" >
     <arg name="load_robot_description" value="true" />
   </include>
 
- <include file="$(find abb_moveit)/launch/move_group.launch">
+ <include file="$(eval find(arg('moveit_pkg')) + '/launch/move_group.launch')">
    <arg name="allow_trajectory_execution" value="true"/>
    <arg name="load_robot_description" value="false"/>
  </include>
@@ -51,7 +52,8 @@
   
   <include file="$(find abb_app)/launch/mqtt_converter.launch" /> <!-- This launches the node to communicate with ITR -->
 <!--include file="$(find arbitration_utils)/launch/drapebot_arbitration.launch" /--> <!-- This launches the node to manage arbitration -->
-  <include file="$(find human_traj_estimator)/launch/assistance_estimator.launch" /> <!-- This launches the node to update the human pose -->
+<!--   <include file="$(find human_traj_estimator)/launch/assistance_estimator.launch" /> -->
+  <!-- This launches the node to update the human pose -->
   
 </launch>
 

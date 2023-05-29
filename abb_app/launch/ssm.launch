@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <arg name="robot_name" default="robot_1"/>
+  
+<!--   <group ns="$(arg robot_name)"> -->
+  <node pkg="velocity_scaling_iso15066" type="velocity_scaling_iso15066_node" name="safety" output="screen">
+    <rosparam file="$(find abb_app)/config/ssm_config.yaml" command="load"/>
+  </node>
+<!--   </group> -->
+  
+</launch>
