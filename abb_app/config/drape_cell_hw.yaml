@@ -32,13 +32,15 @@ mqtt_hw:
   use_delta_target_pos: false
   delta_pos_from_start: false
   
-  use_real_robot: false # true i using real robot, false to use a fake robot
+  use_real_robot: true # true i using real robot, false to use a fake robot
+
   
   #--- MQTT ---
   
   client_id: "MQTT_HW"
-  #host: 192.168.125.7   # drapebot -- mqtt broker address
-  host: localhost
+  host: 192.168.125.7   # drapebot -- mqtt broker address
+  #host: localhost
+
   port: 1883
   
   feedback_mqtt_topic: "/robot_1/feedback"
