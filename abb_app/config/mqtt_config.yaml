@@ -18,7 +18,7 @@ robot_joint_names:
 - joint_5
 - joint_6
 
-handle_deformation: false
+handle_deformation: true
 # to publish target pose
 base_link: fake_linear_axis
 tool_link: grasping

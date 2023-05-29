@@ -1,14 +1,13 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 77
+    Help Height: 70
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /MotionPlanning1
         - /MotionPlanning1/Planning Request1
         - /TF1/Frames1
-      Splitter Ratio: 0.5
-    Tree Height: 366
+      Splitter Ratio: 0.5553278923034668
+    Tree Height: 340
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -122,6 +121,10 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          world:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
         Loop Animation: true
         Robot Alpha: 0.5
         Robot Color: 150; 50; 150
@@ -216,6 +219,10 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          world:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
         Robot Alpha: 1
         Show Robot Collision: false
         Show Robot Visual: true
@@ -246,25 +253,28 @@ Visualization Manager:
           Value: false
         link_6:
           Value: false
+        world:
+          Value: true
       Marker Alpha: 1
-      Marker Scale: 1
+      Marker Scale: 3
       Name: TF
       Show Arrows: false
       Show Axes: true
       Show Names: true
       Tree:
-        fake_linear_axis:
-          base_link:
-            link_1:
-              link_2:
-                link_3:
-                  link_4:
-                    link_5:
-                      link_6:
-                        grasping:
-                          {}
-                        gripper:
-                          {}
+        world:
+          fake_linear_axis:
+            base_link:
+              link_1:
+                link_2:
+                  link_3:
+                    link_4:
+                      link_5:
+                        link_6:
+                          grasping:
+                            {}
+                          gripper:
+                            {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -283,7 +293,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10.176642417907715
+      Distance: 13.323485374450684
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -299,16 +309,16 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.28500038385391235
+      Pitch: 0.22500038146972656
       Target Frame: base_link
-      Yaw: 0.26676470041275024
+      Yaw: 0.4817616939544678
     Saved: ~
 Window Geometry:
   ConfigurationManager:
     collapsed: false
   Displays:
     collapsed: true
-  Height: 647
+  Height: 1030
   Help:
     collapsed: false
   Hide Left Dock: true
@@ -317,9 +327,9 @@ Window Geometry:
     collapsed: true
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000200000000000001ca000003b0fc0200000007fb000000100044006900730070006c006100790073000000003b000001d5000000c700fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a00560069006500770073000000010c000000a4000000a000fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670000000216000001d50000016900ffffff00000001000000e800000231fc0200000001fb000000280043006f006e00660069006700750072006100740069006f006e004d0061006e0061006700650072010000003b000002310000014000ffffff000002ce0000023100000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000200000000000001ea000003b0fc0200000007fb000000100044006900730070006c006100790073000000003b000001d5000000c700fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a00560069006500770073000000010c000000a4000000a000fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670000000216000001d50000016900ffffff00000001000000ff000003b0fc0200000001fb000000280043006f006e00660069006700750072006100740069006f006e004d0061006e0061006700650072010000003b000003b00000014000ffffff00000677000003b000000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
-  Width: 956
-  X: 960
+  Width: 1916
+  X: 0
   Y: 18

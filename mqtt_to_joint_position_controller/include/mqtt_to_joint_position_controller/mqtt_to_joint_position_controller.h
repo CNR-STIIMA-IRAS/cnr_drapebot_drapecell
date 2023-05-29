@@ -41,6 +41,7 @@
 #include <pluginlib/class_list_macros.h>
 #include <position_controllers/joint_group_position_controller.h>
 #include <drapebot_mqtt_client/drapebot_mqtt_client.h>
+#include <realtime_tools/realtime_publisher.h>
 
 
 namespace drapebot_controller 
@@ -61,7 +62,8 @@ namespace drapebot_controller
     private:
 
         //
-        ros::Publisher command_pub;
+        realtime_tools::RealtimePublisher<std_msgs::Float64MultiArray>* command_pub_;
+        std::ofstream file_stream_;
         //
 
         bool first_cycle_;

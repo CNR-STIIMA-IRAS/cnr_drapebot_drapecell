@@ -18,35 +18,35 @@ mqtt_hw:
   - joint_5
   - joint_6
 
-  base_link: "fake_linear_axis"
-  tool_link: "link_6"
+  base_link: "fake_linear_axis" # the base link of the kinematic config - check URDF if some error happens
+  tool_link: "link_6" # the final link of the kinematic config - check URDF if some error happens
   robot_description_param: /robot_description
   robot_description_planning_param: /robot_description_planning
   kin_update_period: 0.1
 
-  initial_position: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  initial_position: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  # initial positions for using fake robot only
   
   max_tracking_error: 1
-  verbose: false
+  verbose: false  # to print more stuff on the screen
   
   use_delta_target_pos: false
   delta_pos_from_start: false
   
-  use_real_robot: true
+  use_real_robot: false # true i using real robot, false to use a fake robot
   
   #--- MQTT ---
   
   client_id: "MQTT_HW"
-  host: 192.168.125.7    # drapebot
-  #host: localhost
+  #host: 192.168.125.7   # drapebot -- mqtt broker address
+  host: localhost
   port: 1883
   
   feedback_mqtt_topic: "/robot_1/feedback"
-  out_feedback_mqtt_topic: "/ITR_feedback"
+  out_feedback_mqtt_topic: "/ITR_feedback"  # change according to ITR motion planner if needed
   command_mqtt_topic:  "/robot_1/command"
-  nominal_trajectory_topic: /joint_pos_target
+  nominal_trajectory_topic: /joint_pos_target # never change this
   
-  use_json: true
+  use_json: true    # never change this
   # --- end ---
   
 
@@ -55,61 +55,54 @@ mqtt_hw:
   remap_target_args:
   - "/joint_states"
 
-
+  # controller that publishes joint states
   js_pub:
     type: cnr/control/JointStatePublisher
     controlled_joints: all
     kin_update_period : 0.004
 
-
+  # controller sends open loop command positions
   p_j:
     type: cnr/control/OpenLoopPositionController
     setpoint_topic_name: /joint_pos_target
     controlled_joints: all
     kin_update_period : 0.004
   
-  deformation_ctrl:
-    type: "cnr/control/DeformationCtrl"
-    controlled_joints: all
-    kin_update_period: 0.004
-    
-    use_cartesian_reference: false                 # are you going to use a reference Pose or JointState?  default: false
-    joint_target_topic:     "/joint_pos_target"   # incoming joints setpoint topic 
-    pose_target:            "/interp_target_cart_pose"   # incoming pose setpoint topic
-    
-    robot_base_frame  : fake_linear_axis
-    robot_tip_frame   : link_6
-    
-    
+    # controller that allows trajectory deformation
   gt_traj_arb:
     type: cnr/control/GTTrajArbitration
-    controlled_joints: all
+    controlled_joints: [ joint_1, joint_2, joint_3, joint_4, joint_5, joint_6]
+    
     kin_update_period: 0.04
     
-    robot_base_frame  : fake_linear_axis
-    robot_tip_frame   : link_6
-    force_sensor_frame: grasping    ### TODO : set according to urdf on profactor PC
+    robot_base_frame  : base_link  # base of the kinematic chain
+    robot_tip_frame   : grasping   # frame of the robot 
+    force_sensor_frame: grasping   # frame of the sensor position (ply deformation estimation)
     
-    use_cartesian_reference: false
-    joint_target_topic:     "/robot1/interp_joint_pos_target"
+    use_cartesian_reference: false # false because ITR commands are in joints 
+    joint_target_topic:     "/joint_pos_target"
     pose_target:            "/target_cart_pose"
     
-    external_wrench_topic: "/deformation_estimation"
-    wrench_deadband: [.02,.02,.02,1,1,0.05]
-    use_filtered_wrench: true
-    omega_wrench: 500
-    wrench_gains: [200,75,75,1,1,1.5]
+    external_wrench_topic: "/deformation_estimation"  # topic where the ply deformation is published
+    wrench_deadband: [.05,.03,.02,1,1,0.05] # deadband on the deformation. applys directily at the command received
+    use_filtered_wrench: true # better filter it a little
+    omega_wrench: 1000 
+    wrench_gains: [150,100,100,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench. 
+#    wrench_gains: [150,0,0,0,0,1]
     
-    set_wrench_zero: false
-    wrench_zero: [0,1,0,0,0,0]  # measured in meters from the gripper
+    set_wrench_zero: true  # to init the zero wrench with known values. if false the first message is used as offset 
+    wrench_zero: [0,0.8,0,0,0,0]  # measured in meters from the force_sensor_frame. is the offset
     
-    ### for GT and MG
-    M_r: [10,10,10,.1,.1,.1]
-    K_r: [0,0,0,0,0,0]
-    D_r: [100,100,100,1,1,1]
-    damping_is_ratio: false
+    ### impedance parameters for GT and MG 
+    ### [NOTE] all values are WRT base frame
+    M_r: [1,1,1,.1,.1,.1]    # mass values [x,y,z,Rx,Ry,Rz]    
+    K_r: [0,0,0,0,0,0]       # stiffness values [x,y,z,Rx,Ry,Rz]
+    D_r: [100,100,100,1,1,2] # damping values [x,y,z,Rx,Ry,Rz]
+    damping_is_ratio: false  # false if stiffness is null
 
     
+    ### to use only the translation for the deformation
+    ### [NOTE] all values are WRT base frame
     #n_dofs: 3
     
     #Qhh: [1,1,1,0.0001,0.0001,0.0001]
@@ -124,6 +117,8 @@ mqtt_hw:
     #mask: [1,1,1,0,0,0]
     
     
+    ### to deform the trtajectory in x-y-z directions and around vertical axis
+    ### [NOTE] all values are WRT base frame
     n_dofs: 6
     
     Qhh: [1,1,1,1,1,1,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001]
@@ -132,21 +127,27 @@ mqtt_hw:
     Qrh: [0,0,0,0,0,0,0,0,0,0,0,0]
     Qrr: [1,1,1,1,1,1,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001]
     
-    Rh: [0.0005,0.0005,0.0005,0.5,0.5,5]
+    Rh: [0.0005,0.0005,0.0005,5,5,5]
     #Rh: [0.00005,0.00005,0.00005,1,1,1]
     
-    Rr: [0.0005,0.0005,0.0005,1,1,1]
+    # lower values will make the robot behavior more aggressive
+    Rr: [0.0005,0.0005,0.0005,5,5,5]
     
+    ### allows force along the directions where set to 1
     mask: [1,1,1,0,0,1]
     
     
-    robot_active: true   # true for GT - false for MG and IC
-        
-    alpha: 0.99
-    alpha_max: 0.99
-    alpha_min: 0.01
-    alpha_switch: 0.5
+    robot_active: true   # true for GT arbitration - false for MG and IC
     
+    ### arbitration parameters
+    
+    alpha: 0.99           # initial arbitration value - changed dynamically if the arbitration node is active
+    alpha_max: 0.99     # to avoid it to be one
+    alpha_min: 0.01     # to avoid it to be zero
+    alpha_switch: 0.5   # value for which the controller became non cooperative
+    
+    
+    ### do not touch
     base_control: "cgt"
     #control_switch: "ncgt"
     control_switch: "inverse_cgt"
@@ -155,7 +156,7 @@ mqtt_hw:
     use_human_reference: true
 
 
-
+# microinterpolator control level - no need to touch 
 plan_hw:
   type: cnr/control/TopicRobotHW
   appenders: [file, screen]
@@ -190,6 +191,7 @@ plan_hw:
   - "/plan_hw/microint/follow_joint_trajectory/goal"
   - "/plan_hw/microint/follow_joint_trajectory/result"
   - "/plan_hw/microint/follow_joint_trajectory/status"
+  - "/plan_hw/microint/unscaled_joint_target"
 
   remap_target_args:
   - "abb_moveit_lab/follow_joint_trajectory/cancel"
@@ -197,6 +199,7 @@ plan_hw:
   - "abb_moveit_lab/follow_joint_trajectory/goal"
   - "abb_moveit_lab/follow_joint_trajectory/result"
   - "abb_moveit_lab/follow_joint_trajectory/status"
+  - "/unscaled_joint_target"
 
   microint____:
     type: "cnr/control/FollowJointTrajectoryPosVelEffController"
