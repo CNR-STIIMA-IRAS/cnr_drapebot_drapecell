@@ -51,7 +51,7 @@
     <arg name="debug" value="$(arg debug)"/>
   </include>
   
-  <include file="$(find abb_app)/launch/mqtt_converter.launch" /> <!-- This launches the node to communicate with ITR -->
+  <!--include file="$(find abb_app)/launch/mqtt_converter.launch" /--> <!-- This launches the node to communicate with ITR -->
 <!--include file="$(find arbitration_utils)/launch/drapebot_arbitration.launch" /--> <!-- This launches the node to manage arbitration -->
 <!--   <include file="$(find human_traj_estimator)/launch/assistance_estimator.launch" /> -->
   <!-- This launches the node to update the human pose -->
