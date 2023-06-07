@@ -19,9 +19,18 @@ rosservice call /rws/sm_addin/start_egm_joint "{}"
 ```
 
 4. **[Terminal 3]** To switch the controller:
-```
-rosservice call /egm/controller_manager/switch_controller {"start_controllers: [mqtt_to_joint_position_controller], stop_controllers: [''], strictness: 1, start_asap: false, timeout: 0.0"}
-```
+
+  4.a To use ros_control **standard position controller**
+  ```
+  rosservice call /egm/controller_manager/switch_controller {"start_controllers: [j_pos_ctrl], stop_controllers: [''], strictness: 1, start_asap: false, timeout: 0.0"}
+  ```
+
+  4.b To use **MQTT based position controller** --- N.B. NOT recommended
+  ```
+  rosservice call /egm/controller_manager/switch_controller {"start_controllers: [mqtt_to_joint_position_controller], stop_controllers: [''], strictness: 1, start_asap: false, timeout: 0.0"}
+  ```
+
+
 
 5. **[Terminal 4]** To send a control command through MQTT (optional only for testing the mqtt_to_joint_position_controller):
 ```
