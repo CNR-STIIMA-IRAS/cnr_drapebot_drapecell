@@ -38,7 +38,7 @@ mqtt_hw:
   #--- MQTT ---
   
   client_id: "MQTT_HW"
-  host: 192.168.125.200   # drapebot -- mqtt broker address
+  host: 192.168.155.201   # drapebot -- mqtt broker address
   #host: localhost
 
   port: 1883
@@ -48,7 +48,7 @@ mqtt_hw:
   command_mqtt_topic:  "/robot_1/command"
   nominal_trajectory_topic: /joint_pos_target # never change this
   
-  use_json: true    # never change this
+  use_json: false    # never change this
   # --- end ---
   
 
