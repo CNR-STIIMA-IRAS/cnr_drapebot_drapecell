@@ -49,6 +49,9 @@ mqtt_hw:
   nominal_trajectory_topic: /joint_pos_target # never change this
   
   use_json: false    # never change this
+  use_ros_feedback: true   # use ROS feedback instead of using direct MQTT feedback
+  feedback_ros_topic: "/abb/joint_state"
+
   # --- end ---
   
 

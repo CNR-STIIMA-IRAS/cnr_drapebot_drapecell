@@ -2,8 +2,8 @@
 <launch>
   <arg name="debug" default="false"/>
   <arg name="use_rviz" default="true" />
-  <!--arg name="moveit_pkg" default="abb_moveit" / -->
-  <arg name="moveit_pkg" default="abb_irb_4600_moveit" />
+  <arg name="moveit_pkg" default="abb_moveit" />
+  <!--arg name="moveit_pkg" default="abb_irb_4600_moveit" /-->
 
   <rosparam command="load" file="$(find abb_app)/config/drape_cell_hw.yaml" />
   <rosparam command="load" file="$(find abb_app)/config/ft_hw.yaml" />
