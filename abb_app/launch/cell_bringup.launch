@@ -50,7 +50,12 @@
     <arg name="rviz_config" value="$(find abb_app)/config/moveit.rviz"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
-  
+
+  <!-- To launch the node mqtt repeater that read the MQTT robot feedback and publish the equivalent ROS message, need only for DrapeCell and ABB bug fix  -->
+  <node launch-prefix="$(arg launch_prefix)" pkg="cnr_mqtt_hardware_interface" type="mqtt_robot_feedback_repeater_node" name="mqtt_robot_feedback_repeater_node" output="screen">    
+  </node>
+
+
   <!--include file="$(find abb_app)/launch/mqtt_converter.launch" /--> <!-- This launches the node to communicate with ITR -->
 <!--include file="$(find arbitration_utils)/launch/drapebot_arbitration.launch" /--> <!-- This launches the node to manage arbitration -->
 <!--   <include file="$(find human_traj_estimator)/launch/assistance_estimator.launch" /> -->
