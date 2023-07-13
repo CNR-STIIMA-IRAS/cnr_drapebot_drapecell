@@ -29,8 +29,8 @@ mqtt_hw:
   max_tracking_error: 1
   verbose: true  # to print more stuff on the screen
   
-  use_delta_target_pos: false
-  delta_pos_from_start: false
+  #use_delta_target_pos: false
+  #delta_pos_from_start: false
   
   use_real_robot: true # true i using real robot, false to use a fake robot
 
@@ -48,7 +48,7 @@ mqtt_hw:
   command_mqtt_topic:  "/robot_1/command"
   nominal_trajectory_topic: /joint_pos_target # never change this
   
-  use_json: false    # never change this
+  use_json: false    
   use_ros_feedback: true   # use ROS feedback instead of using direct MQTT feedback
   feedback_ros_topic: "/abb/joint_state"
 
@@ -89,38 +89,21 @@ mqtt_hw:
     pose_target:            "/target_cart_pose"
     
     external_wrench_topic: "/deformation_estimation"  # topic where the ply deformation is published
-    wrench_deadband: [.05,.03,.02,1,1,0.05] # deadband on the deformation. applys directily at the command received
+    wrench_deadband: [.02,.02,.02,1,1,0.05] # deadband on the deformation. applys directily at the command received
     use_filtered_wrench: true # better filter it a little
     omega_wrench: 1000 
-    wrench_gains: [150,100,100,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench. 
-#    wrench_gains: [150,0,0,0,0,1]
+    wrench_gains: [20,20,20,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench. 
     
     set_wrench_zero: true  # to init the zero wrench with known values. if false the first message is used as offset 
-    wrench_zero: [0,0.8,0,0,0,0]  # measured in meters from the force_sensor_frame. is the offset
+    wrench_zero: [0,1,0,0,0,0]  # measured in meters from the force_sensor_frame. is the offset
     
     ### impedance parameters for GT and MG 
     ### [NOTE] all values are WRT base frame
     M_r: [1,1,1,.1,.1,.1]    # mass values [x,y,z,Rx,Ry,Rz]    
     K_r: [0,0,0,0,0,0]       # stiffness values [x,y,z,Rx,Ry,Rz]
-    D_r: [100,100,100,1,1,2] # damping values [x,y,z,Rx,Ry,Rz]
+    D_r: [50,50,50,1,1,2] # damping values [x,y,z,Rx,Ry,Rz]
     damping_is_ratio: false  # false if stiffness is null
 
-    
-    ### to use only the translation for the deformation
-    ### [NOTE] all values are WRT base frame
-    #n_dofs: 3
-    
-    #Qhh: [1,1,1,0.0001,0.0001,0.0001]
-    #Qhr: [0,0,0,0,0,0]
-    
-    #Qrh: [0,0,0,0,0,0]
-    #Qrr: [1,1,1,0.0001,0.0001,0.0001]
-    
-    #Rh: [0.0005,0.0005,0.0005]
-    #Rr: [0.0001,0.0001,0.0001]
-    
-    #mask: [1,1,1,0,0,0]
-    
     
     ### to deform the trtajectory in x-y-z directions and around vertical axis
     ### [NOTE] all values are WRT base frame
@@ -156,6 +139,7 @@ mqtt_hw:
     base_control: "cgt"
     #control_switch: "ncgt"
     control_switch: "inverse_cgt"
+    
     use_same_reference: false
     use_robot_reference: false
     use_human_reference: true
