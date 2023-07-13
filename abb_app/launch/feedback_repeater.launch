@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="debug" default="false"/>
+  <arg name="use_rviz" default="true" />
+  <arg name="moveit_pkg" default="abb_moveit" />
+
+  <rosparam command="load" file="$(find abb_app)/config/drape_cell_hw.yaml" />
+
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+  
+
+  <node launch-prefix="$(arg launch_prefix)" pkg="cnr_mqtt_hardware_interface" type="mqtt_robot_feedback_repeater_node" name="mqtt_robot_feedback_repeater_node" output="screen">    
+  </node>
+  
+</launch>
