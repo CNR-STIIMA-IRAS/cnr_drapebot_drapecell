@@ -38,7 +38,7 @@ mqtt_hw:
   #--- MQTT ---
   
   client_id: "MQTT_HW"
-  host: 192.168.155.201   # drapebot -- mqtt broker address
+  host: 192.168.130.9   # drapebot -- mqtt broker address
   #host: localhost
 
   port: 1883
@@ -92,10 +92,10 @@ mqtt_hw:
     wrench_deadband: [.02,.02,.02,1,1,0.05] # deadband on the deformation. applys directily at the command received
     use_filtered_wrench: true # better filter it a little
     omega_wrench: 1000 
-    wrench_gains: [20,20,20,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench. 
+    wrench_gains: [40,40,20,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench. 
     
     set_wrench_zero: true  # to init the zero wrench with known values. if false the first message is used as offset 
-    wrench_zero: [0,1,0,0,0,0]  # measured in meters from the force_sensor_frame. is the offset
+    wrench_zero: [0,0.9,-0.1,0,0,0]  # measured in meters from the force_sensor_frame. is the offset
     
     ### impedance parameters for GT and MG 
     ### [NOTE] all values are WRT base frame
@@ -140,6 +140,7 @@ mqtt_hw:
     #control_switch: "ncgt"
     control_switch: "inverse_cgt"
     
+    # do not change. used for testing and other usecases.
     use_same_reference: false
     use_robot_reference: false
     use_human_reference: true

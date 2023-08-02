@@ -74,20 +74,12 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          base:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
           fake_linear_axis:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          flange:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -130,10 +122,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          tool0:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           world:
             Alpha: 1
             Show Axes: false
@@ -161,7 +149,7 @@ Visualization Manager:
         Goal State Color: 250; 128; 0
         Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255
-        Planning Group: manipulator
+        Planning Group: robot_1
         Query Goal State: false
         Query Start State: false
         Show Workspace: false
@@ -184,20 +172,12 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          base:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
           fake_linear_axis:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          flange:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -240,10 +220,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          tool0:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           world:
             Alpha: 1
             Show Axes: false
@@ -260,13 +236,9 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base:
-          Value: true
         base_link:
           Value: true
         fake_linear_axis:
-          Value: false
-        flange:
           Value: false
         grasping:
           Value: true
@@ -284,8 +256,10 @@ Visualization Manager:
           Value: false
         link_6:
           Value: false
-        tool0:
-          Value: true
+        manipulation/wall/n_0:
+          Value: false
+        manipulation/wall/n_1:
+          Value: false
         world:
           Value: true
       Marker Alpha: 1
@@ -298,20 +272,20 @@ Visualization Manager:
         world:
           fake_linear_axis:
             base_link:
-              base:
-                {}
               link_1:
                 link_2:
                   link_3:
                     link_4:
                       link_5:
                         link_6:
-                          flange:
-                            tool0:
-                              grasping:
-                                {}
-                              gripper:
-                                {}
+                          grasping:
+                            {}
+                          gripper:
+                            {}
+          manipulation/wall/n_0:
+            {}
+          manipulation/wall/n_1:
+            {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -346,9 +320,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.13500042259693146
+      Pitch: 0.24500016868114471
       Target Frame: base_link
-      Yaw: 0.4917619824409485
+      Yaw: 0.38176149129867554
     Saved: ~
 Window Geometry:
   ConfigurationManager:
