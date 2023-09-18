@@ -13,7 +13,6 @@ control_configurations:
     depends: [mqtt_watch]
     hidden: true
     components:
-      #- { hardware_interface: "mqtt_hw", controller : "deformation_ctrl"}
       - { hardware_interface: "mqtt_hw", controller : "gt_traj_arb"}
 
   - name: planner

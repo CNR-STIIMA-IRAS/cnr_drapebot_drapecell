@@ -3,7 +3,7 @@
   <arg name="debug" default="false"/>
   <arg name="use_rviz" default="true" />
   <arg name="moveit_pkg" default="abb_moveit" />
-  <!--arg name="moveit_pkg" default="abb_irb_4600_moveit" /-->
+  <!-- <arg name="moveit_pkg" default="abb_irb_4600_moveit" /> -->
 
   <rosparam command="load" file="$(find abb_app)/config/drape_cell_hw.yaml" />
   <rosparam command="load" file="$(find abb_app)/config/ft_hw.yaml" />
@@ -55,13 +55,13 @@
   <node launch-prefix="$(arg launch_prefix)" pkg="cnr_mqtt_hardware_interface" type="mqtt_robot_feedback_repeater_node" name="mqtt_robot_feedback_repeater_node" output="screen">    
   </node>
 
-
-  <include file="$(find abb_app)/launch/mqtt_converter.launch" /> <!-- This launches the node to communicate with ITR -->
+<!-- This launches the node to communicate with ITR -->
+<!--   <include file="$(find abb_app)/launch/mqtt_converter.launch" />  -->
 <!-- This launches the node to update the human pose -->
-  <include file="$(find human_traj_estimator)/launch/assistance_estimator.launch" />
+<!--   <include file="$(find abb_app)/launch/assistance_estimator.launch" /> -->
 <!-- This launches the arbitration node -->
-<include file="$(find abb_app)/launch/arbitration.launch" /> <!-- This launches the node to manage arbitration -->
-  
+<include file="$(find abb_app)/launch/arbitration.launch" /> 
+
 </launch>
 
 
