@@ -56,11 +56,11 @@
   </node>
 
 <!-- This launches the node to communicate with ITR -->
-<!--   <include file="$(find abb_app)/launch/mqtt_converter.launch" />  -->
-<!-- This launches the node to update the human pose -->
-<!--   <include file="$(find abb_app)/launch/assistance_estimator.launch" /> -->
-<!-- This launches the arbitration node -->
-<include file="$(find abb_app)/launch/arbitration.launch" /> 
+<include file="$(find abb_app)/launch/mqtt_converter.launch" />
+<!-- This launches the node to update the human pose (quando viene lanciato sembra introdurre 0.3 di ritarto tra comando e feedback lato Ubuntu) -->
+<!-- include file="$(find abb_app)/launch/assistance_estimator.launch" /--> 
+<!-- This launches the arbitration node (quando viene lanciato sembra introdurre 0.5 di ritarto tra comando e feedback lato Ubuntu)-->
+<!-- include file="$(find abb_app)/launch/arbitration.launch" /-->
 
 </launch>
 

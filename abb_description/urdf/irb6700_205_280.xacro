@@ -35,7 +35,7 @@
  </link>
  
    <joint name="$joint_deformation" type="fixed">
-    <origin xyz="0.78 0.96 -0.18" rpy="0 1.5707 0"/>
+    <origin xyz="0.78 0.744 0" rpy="0 1.5707 0"/>
     <parent link="link_6"/>
     <child link="grasping"/>
   </joint>
