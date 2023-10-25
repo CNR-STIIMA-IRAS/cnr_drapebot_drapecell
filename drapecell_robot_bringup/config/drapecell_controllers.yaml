@@ -43,6 +43,8 @@ mqtt_to_joint_position_controller:
   port: 1883
   client_id: mqtt_to_pos_ctrl
   use_json: false
+  use_ros_command: true
+  ros_command_topic: "/egm/mqtt_to_ros_command/joint_states"
 
 j_pos_ctrl:
   type: position_controllers/JointGroupPositionController

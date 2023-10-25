@@ -2,8 +2,9 @@
 <launch>
   <arg name="debug" default="false"/>
   <arg name="robot_ip" default="192.168.125.1" doc="The robot controller's IP address"/>
-  
-  <arg if="$(arg debug)" name="launch_prefix" default="xterm -e gdb -ex run  --args" />
+    
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
   <!-- Set output verbosity level -->
   
   <!-- <env name="ROSCONSOLE_CONFIG_FILE" value="$(find drapecell_robot_bringup)/config/rosconsole.conf"/> -->
@@ -34,7 +35,6 @@
   <group ns="egm">
     <!-- Load configurations for 'ros_control' controllers on the parameter server -->
     <rosparam file="$(find drapecell_robot_bringup)/config/drapecell_controllers.yaml" command="load"/>
-<!--     <rosparam file="$(find mqtt_to_joint_position_controller)/config/mqtt_config.yaml" command="load"/> -->
 
     <!-- Two 'ros_control' controller spawners (stopped for the controller that command motions) -->
     <node pkg="controller_manager" type="spawner" name="started" args="egm_joint_state_to_mqtt_controller egm_state_controller  joint_state_controller" output="screen"/>   
@@ -48,6 +48,10 @@
     <arg name="base_config_file" value="$(find drapecell_robot_bringup)/config/drapecell_hardware_base.yaml"/>
     <arg name="egm_config_file" value="$(find drapecell_robot_bringup)/config/drapecell_hardware_egm.yaml"/>
   </include>
+
+  <!-- To launch the node mqtt repeater that read the MQTT robot command and publish the equivalent ROS message, need only for DrapeCell and ABB bug fix  -->
+  <node launch-prefix="$(arg launch_prefix)" pkg="cnr_mqtt_command_repeater" type="cnr_mqtt_command_repeater_node" name="cnr_mqtt_command_repeater_node" output="screen">    
+  </node>
 
 
 </launch>
