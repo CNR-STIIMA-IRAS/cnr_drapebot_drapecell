@@ -50,7 +50,7 @@ mqtt_hw:
   
   use_json: false    
   use_ros_feedback: true   # use ROS feedback instead of using direct MQTT feedback
-  feedback_ros_topic: "/abb/joint_state"
+  feedback_ros_topic: "/abb/feedback/joint_states"
 
   # --- end ---
   
