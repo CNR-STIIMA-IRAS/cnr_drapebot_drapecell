@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="debug" default="false"/>
+  <arg name="use_rviz" default="true" />
+  <!-- <arg name="moveit_pkg" default="abb_moveit" /> -->
+  <arg name="moveit_pkg" default="abb_irb_4600_moveit" /> 
+
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+
+  <rosparam command="load" file="$(find abb_app)/config/drape_cell_hw.yaml" />
+  <rosparam command="load" file="$(find abb_app)/config/ft_hw.yaml" />
+  
+  <!-- Convert joint states to /tf tranforms -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+
+  <node launch-prefix="$(arg launch_prefix)" pkg="cnr_configuration_manager" type="cnr_configuration_manager_node" name="configuration_manager" output="screen">
+    <rosparam>
+      appenders: [screen,file]
+      levels: [info,trace]
+      file_name: "configuration_manager"
+      append_to_file: true
+      pattern_layout: "[%5p][%d{HH:mm:ss,SSS}][%M:%04L][%c] %m%n"
+    </rosparam>
+    <rosparam command="load" file="$(find abb_app)/config/drape_cell_configurations.yaml" />
+  </node>
+
+  <node pkg="cnr_configuration_manager" type="dispatcher" name="configuration_dispatcher" output="screen" >
+    <rosparam>
+      appenders: [screen]
+      levels: [info]
+      file_name: "bbb"
+      pattern_layout: "[%5p][%d{HH:mm:ss,SSS}][%M:%04L][%c] %m%n"
+    </rosparam>
+    <param name="num_worker_threads" value="40" />
+    <remap from="~configuration_dispatches" to="/configuration_manager/configuration_dispatches" />
+  </node>
+ 
+  <include file="$(eval find(arg('moveit_pkg')) + '/launch/planning_context.launch')" >
+    <arg name="load_robot_description" value="true" />
+  </include>
+
+ <include file="$(eval find(arg('moveit_pkg')) + '/launch/move_group.launch')">
+   <arg name="allow_trajectory_execution" value="true"/>
+   <arg name="load_robot_description" value="false"/>
+ </include>
+ 
+  <!-- To launch the node mqtt repeater that read the MQTT robot feedback and publish the equivalent ROS message, need only for DrapeCell and ABB bug fix  -->
+  <node launch-prefix="$(arg launch_prefix)" pkg="cnr_mqtt_hardware_interface" type="mqtt_robot_feedback_repeater_node" name="mqtt_robot_feedback_repeater_node" output="screen">
+  </node>
+
+</launch>

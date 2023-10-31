@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="debug" default="false"/>
+  <arg name="use_rviz" default="true" />
+  <!-- <arg name="moveit_pkg" default="abb_moveit" /> -->
+  <arg name="moveit_pkg" default="abb_irb_4600_moveit" />
+  
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+
+ <!-- <rosparam command="load" file="$(find abb_app)/config/drape_cell_hw.yaml" />
+  <rosparam command="load" file="$(find abb_app)/config/ft_hw.yaml" /> -->
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find abb_app)/launch/moveit_rviz.launch" if="$(arg use_rviz)">
+    <arg name="rviz_config" value="$(find abb_app)/config/moveit.rviz"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+<!-- This launches the node to communicate with ITR -->
+<include file="$(find abb_app)/launch/mqtt_converter.launch" />
+<!-- This launches the node to update the human pose (quando viene lanciato sembra introdurre 0.3 di ritarto tra comando e feedback lato Ubuntu) -->
+<include file="$(find abb_app)/launch/assistance_estimator.launch" />
+<!-- This launches the arbitration node (quando viene lanciato sembra introdurre 0.5 di ritarto tra comando e feedback lato Ubuntu)-->
+<include file="$(find abb_app)/launch/arbitration.launch" />
+
+</launch>
