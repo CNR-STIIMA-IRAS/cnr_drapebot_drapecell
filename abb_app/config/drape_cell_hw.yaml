@@ -3,6 +3,7 @@ mqtt_hw:
   appenders      : [file, screen]
   levels         : [trace, info]
   pattern_layout : "[%5p][%d{HH:mm:ss,SSS}][%50M:%04L][%24c] %m%n"
+  default_throttle_time: 30.0
   file_name      : mqtt_hw
   sampling_period: 0.004
   diagnostic_period: 0.1
@@ -92,7 +93,8 @@ mqtt_hw:
     wrench_deadband: [.02,.02,.02,1,1,0.05] # deadband on the deformation. applys directily at the command received
     use_filtered_wrench: true # better filter it a little
     omega_wrench: 1000 
-    wrench_gains: [50,40,20,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench. 
+    #wrench_gains: [50,40,20,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench.
+    wrench_gains: [50,50,20,0,0,0.5] #(2023.11.07 Dallara) this gains multiply the incoming deformation information to convert them into a fake Wrench.
     
     set_wrench_zero: true  # to init the zero wrench with known values. if false the first message is used as offset 
     #wrench_zero: [0,0.58,0,0,0,2.71]  # F40-B-RH measured in meters from the force_sensor_frame. is the offset
@@ -127,7 +129,7 @@ mqtt_hw:
     mask: [1,1,1,0,0,1]
     
     
-    robot_active: false   # true for GT arbitration - false for MG and IC
+    robot_active: true   # true for GT arbitration - false for MG and IC
     
     ### arbitration parameters
     
@@ -155,6 +157,7 @@ plan_hw:
   levels: [trace, info]
   pattern_layout: "[%5p][%d{HH:mm:ss,SSS}][%M:%L][%c] %m%n"
   file_name: "plan_hw"
+  default_throttle_time: 30.0
   
   joint_names:   
   - joint_0

@@ -4,7 +4,7 @@ ft_hw:
   levels: [trace, info]
   pattern_layout: "[%5p][%d{HH:mm:ss,SSS}][%M:%L][%c] %m%n"
   file_name: "ft_hw"
-  default_throttle_time: 20.0
+  default_throttle_time: 30.0
   sampling_period: 0.01
   init_sensor: true
 
