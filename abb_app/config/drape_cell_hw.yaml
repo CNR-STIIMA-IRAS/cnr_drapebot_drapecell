@@ -24,6 +24,8 @@ mqtt_hw:
   robot_description_param: /robot_description
   robot_description_planning_param: /robot_description_planning
   kin_update_period: 0.1
+  
+  goal_tolerance: [0.001,0.01,0.01,0.01,0.01,0.01,0.01]
 
   initial_position: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  # initial positions for using fake robot only
   
@@ -85,6 +87,10 @@ mqtt_hw:
     robot_tip_frame   : grasping   # frame of the robot 
     force_sensor_frame: grasping   # frame of the sensor position (ply deformation estimation)
     
+    alpha_topic: "/alpha"
+    human_target_topic: "/human_target"
+    black_depth_topic: "/black_depth"
+    
     use_cartesian_reference: false # false because ITR commands are in joints 
     joint_target_topic:     "/joint_pos_target"
     pose_target:            "/target_cart_pose"
@@ -94,7 +100,8 @@ mqtt_hw:
     use_filtered_wrench: true # better filter it a little
     omega_wrench: 1000 
     #wrench_gains: [50,40,20,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench.
-    wrench_gains: [50,50,20,0,0,0.5] #(2023.11.07 Dallara) this gains multiply the incoming deformation information to convert them into a fake Wrench.
+    #wrench_gains: [50,50,20,0,0,0.5] #(2023.11.07 Dallara with PURE Manual Guidance) this gains multiply the incoming deformation information to convert them into a fake Wrench.
+    wrench_gains: [60,65,40,0,0,1] #(2023.11.08 Dallara with Arbitration) this gains multiply the incoming deformation information to convert them into a fake Wrench.
     
     set_wrench_zero: true  # to init the zero wrench with known values. if false the first message is used as offset 
     #wrench_zero: [0,0.58,0,0,0,2.71]  # F40-B-RH measured in meters from the force_sensor_frame. is the offset
