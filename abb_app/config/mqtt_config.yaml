@@ -9,6 +9,8 @@ rate: 100
 
 robot_hw_ns: "/robot1_mqtt_hw"
 
+staring_configuration: "watch"
+
 robot_joint_names: 
 - joint_0
 - joint_1
