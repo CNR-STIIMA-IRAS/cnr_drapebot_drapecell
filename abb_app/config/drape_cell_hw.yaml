@@ -96,12 +96,12 @@ mqtt_hw:
     pose_target:            "/target_cart_pose"
     
     external_wrench_topic: "/deformation_estimation"  # topic where the ply deformation is published
-    wrench_deadband: [.02,.02,.02,1,1,0.05] # deadband on the deformation. applys directily at the command received
+    wrench_deadband: [.015,.02,.02,1,1,0.05] # deadband on the deformation. applys directily at the command received
     use_filtered_wrench: true # better filter it a little
     omega_wrench: 1000 
-    #wrench_gains: [50,40,20,0,0,1] # this gains multiply the incoming deformation information to convert them into a fake Wrench.
+    wrench_gains: [120,35,25,0,0,0.7] # this gains multiply the incoming deformation information to convert them into a fake Wrench.
     #wrench_gains: [50,50,20,0,0,0.5] #(2023.11.07 Dallara with PURE Manual Guidance) this gains multiply the incoming deformation information to convert them into a fake Wrench.
-    wrench_gains: [60,65,40,0,0,1] #(2023.11.08 Dallara with Arbitration) this gains multiply the incoming deformation information to convert them into a fake Wrench.
+    #wrench_gains: [60,65,40,0,0,1] #(2023.11.08 Dallara with Arbitration) this gains multiply the incoming deformation information to convert them into a fake Wrench.
     
     set_wrench_zero: true  # to init the zero wrench with known values. if false the first message is used as offset 
     #wrench_zero: [0,0.58,0,0,0,2.71]  # F40-B-RH measured in meters from the force_sensor_frame. is the offset
@@ -125,6 +125,7 @@ mqtt_hw:
     
     Qrh: [0,0,0,0,0,0,0,0,0,0,0,0]
     Qrr: [1,1,1,1,1,1,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001]
+
     
     Rh: [0.0005,0.0005,0.0005,5,5,5]
     #Rh: [0.00005,0.00005,0.00005,1,1,1]
@@ -163,7 +164,7 @@ plan_hw:
   appenders: [file, screen]
   levels: [trace, info]
   pattern_layout: "[%5p][%d{HH:mm:ss,SSS}][%M:%L][%c] %m%n"
-  file_name: "plan_hw"
+  file_name: plan_hw
   default_throttle_time: 30.0
   
   joint_names:   
@@ -215,7 +216,6 @@ plan_hw:
     type: "cnr/control/ScaledFJTPosController"
     controlled_joints: all
     kin_update_period : 0.04
-
 
   
   

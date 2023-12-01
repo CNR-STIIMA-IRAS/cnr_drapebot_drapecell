@@ -10,7 +10,7 @@ Panels:
         - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.5553278923034668
-    Tree Height: 344
+    Tree Height: 935
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -47,7 +47,7 @@ Visualization Manager:
       Value: true
     - Acceleration_Scaling_Factor: 0.3
       Class: moveit_rviz_plugin/MotionPlanning
-      Enabled: true
+      Enabled: false
       Move Group Namespace: ""
       MoveIt_Allow_Approximate_IK: false
       MoveIt_Allow_External_Program: false
@@ -76,61 +76,6 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          base:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          base_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          fake_linear_axis:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          flange:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          link_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_2:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_3:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_4:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_5:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_6:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          tool0:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          world:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
         Loop Animation: false
         Robot Alpha: 0.5
         Robot Color: 150; 50; 150
@@ -177,65 +122,10 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          base:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          base_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          fake_linear_axis:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          flange:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          link_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_2:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_3:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_4:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_5:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          link_6:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          tool0:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          world:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
         Robot Alpha: 1
         Show Robot Collision: false
         Show Robot Visual: true
-      Value: true
+      Value: false
       Velocity_Scaling_Factor: 0.3
     - Class: rviz/TF
       Enabled: true
@@ -244,27 +134,35 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base:
-          Value: true
         base_link:
-          Value: true
+          Value: false
         fake_linear_axis:
+          Value: false
+        grasping:
           Value: true
-        flange:
-          Value: true
+        gripper:
+          Value: false
+        human_trg_pose:
+          Value: false
         link_1:
-          Value: true
+          Value: false
         link_2:
-          Value: true
+          Value: false
         link_3:
-          Value: true
+          Value: false
         link_4:
-          Value: true
+          Value: false
         link_5:
-          Value: true
+          Value: false
         link_6:
+          Value: false
+        manipulation/wall1/n_0:
+          Value: false
+        manipulation/wall2/n_0:
+          Value: false
+        robot_target_pose:
           Value: true
-        tool0:
+        target_pose:
           Value: true
         world:
           Value: true
@@ -278,7 +176,7 @@ Visualization Manager:
         world:
           fake_linear_axis:
             base_link:
-              base:
+              human_trg_pose:
                 {}
               link_1:
                 link_2:
@@ -286,9 +184,18 @@ Visualization Manager:
                     link_4:
                       link_5:
                         link_6:
-                          flange:
-                            tool0:
-                              {}
+                          grasping:
+                            {}
+                          gripper:
+                            {}
+              robot_target_pose:
+                {}
+            target_pose:
+              {}
+          manipulation/wall1/n_0:
+            {}
+          manipulation/wall2/n_0:
+            {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -323,16 +230,16 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.420398473739624
+      Pitch: 0.5203983783721924
       Target Frame: base_link
-      Yaw: 1.3803985118865967
+      Yaw: 0.10039649158716202
     Saved: ~
 Window Geometry:
   ConfigurationManager:
     collapsed: false
   Displays:
     collapsed: false
-  Height: 2018
+  Height: 1080
   Help:
     collapsed: false
   Hide Left Dock: false
@@ -341,9 +248,9 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000002000000000000049200000726fc0200000007fb000000100044006900730070006c0061007900730100000086000001de000001de00fffffffb0000000800480065006c00700000000342000000bb0000010600fffffffb0000000a00560069006500770073000000010c000000a40000017800fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000002e0000002efb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000273000005390000035000ffffff000000010000025000000726fc0200000001fb000000280043006f006e00660069006700750072006100740069006f006e004d0061006e00610067006500720100000086000007260000030000ffffff000007700000072600000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd000000020000000000000168000003e2fc0200000007fb000000100044006900730070006c006100790073010000003b000003e2000000c700fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a00560069006500770073000000010c000000a4000000a000fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670000000145000002d80000016900ffffff00000001000000e8000003e2fc0200000001fb000000280043006f006e00660069006700750072006100740069006f006e004d0061006e0061006700650072010000003b000003e20000014000ffffff00000524000003e200000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
-  Width: 3696
-  X: 144
-  Y: 68
+  Width: 1920
+  X: 0
+  Y: 0
