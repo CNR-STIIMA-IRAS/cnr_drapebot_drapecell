@@ -22,7 +22,7 @@
 <!-- To launch the node that read ros_msgs and publish them on MQTT for visualization -->
 <rosparam command="load" file="$(find abb_app)/config/mqtt_msgs_visualization.yaml" />
 
-<node launch-prefix="$(arg launch_prefix)" pkg="cnr_mcnr_msgs_visualization" type="cnr_msgs_visualization_node" name="cnr_msgs_visualization_node" output="screen">
+<node launch-prefix="$(arg launch_prefix)" pkg="cnr_msgs_visualization" type="cnr_msgs_visualization_node" name="cnr_msgs_visualization_node" output="screen">
 </node>
 
 </launch>
